@@ -95,11 +95,6 @@ npm test
 | `POST` | /api/auth/register | Register a user |
 | `POST` | /api/auth/login | Login & get token
 
-####  Categories
-
-```http
-  GET /api/items/${id}
-```
 
 ### Categories
 All routes below require Authorization: Bearer 
@@ -124,8 +119,4 @@ To run tests, run the following command
 - MongoMemoryServer to mock MongoDB 
  - Supertest for HTTP API tests
 
-### Run tests
-```
-npm test
-```
 
