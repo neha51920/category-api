@@ -82,13 +82,43 @@ npm run dev
 ### Categories
 All routes below require Authorization: Bearer 
 <token>
-| Method | Endpoint     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `POST`      | `/api/categories` | Create new category
-| `GET`      | `/api/categories` | Get all categories in tree format
-| `PUT`      | `/api/categories/:id` | Get all categories in tree format
-| `DELETE`      | `/api/categories/:id` | Delete & reassign subcategories
+1. Create Category
+Endpoint: POST /api/categories
 
+Payload for Root Category:
+```
+{
+"name": "Electronics"
+}
+```
+
+Payload for Subcategory:
+```
+{
+"name": "Mobile Phones",
+"parent": "parent_category_id"
+}
+```
+
+2. Get All Categories (Tree View)
+Endpoint: GET /api/categories
+
+3. Update Category
+Endpoint: PUT /api/categories/:categoryId
+Payload:
+```
+{
+"name": "Updated Category Name"
+}
+```
+
+4. Reassign Subcategory to Another Parent
+Endpoint: PUT /api/categories/:categoryId/reassign/:subcategoryId
+Description: Reassign subcategoryId under new categoryId
+
+5. Delete Category
+Endpoint: DELETE /api/categories/:categoryId
+Description: Deletes a category and reassigns its subcategories to its parent.
 
 
 ## Unit + Integration Tests
