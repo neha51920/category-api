@@ -72,17 +72,42 @@ npm run dev
 ## API Reference
 
 #### Auth
+**1. Register a User** <br/>
+Endpoint: POST /api/auth/register
+Payload:
+```
+{
+"email": "testuser@example.com",
+"password": "password123"
+}
+```
+**2. Login a User** <br/>
+Endpoint: POST /api/auth/login
+Payload:
+```
+{
+"email": "testuser@example.com",
+"password": "password123"
+}
+```
+Returns:
+```
+{
+"token": "your_jwt_token"
+}
+```
+Use this token in all protected routes:
+Header:
+```
+Authorization: Bearer your_jwt_token
+```
 
-| Method | Endpoint     | Description                |
-| :-------- | :------- | :------------------------- |
-| `POST` | /api/auth/register | Register a user |
-| `POST` | /api/auth/login | Login & get token
 
 
 ### Categories
 All routes below require Authorization: Bearer 
-<token>
-1. Create Category
+<token> <br/>
+**1. Create Category** <br/>
 Endpoint: POST /api/categories
 
 Payload for Root Category:
@@ -100,11 +125,11 @@ Payload for Subcategory:
 }
 ```
 
-2. Get All Categories (Tree View)
+**2. Get All Categories (Tree View)** <br/>
 Endpoint: GET /api/categories
 
-3. Update Category
-Endpoint: PUT /api/categories/:categoryId
+**3. Update Category** <br/>
+Endpoint: PUT /api/categories/:categoryId <br/>
 Payload:
 ```
 {
@@ -112,12 +137,12 @@ Payload:
 }
 ```
 
-4. Reassign Subcategory to Another Parent
-Endpoint: PUT /api/categories/:categoryId/reassign/:subcategoryId
-Description: Reassign subcategoryId under new categoryId
+**4. Reassign Subcategory to Another Parent **<br/>
+Endpoint: PUT /api/categories/:categoryId/reassign/:subcategoryId <br/>
+Description: Reassign subcategoryId under new categoryId 
 
-5. Delete Category
-Endpoint: DELETE /api/categories/:categoryId
+**5. Delete Category <br/>**
+Endpoint: DELETE /api/categories/:categoryId <br/>
 Description: Deletes a category and reassigns its subcategories to its parent.
 
 
