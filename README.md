@@ -20,24 +20,6 @@ This project is a Node.js + TypeScript RESTful API to manage multi-level categor
 - JWT
 - Jest + Supertest + MongoMemoryServer
 
-
-## Unit + Integration Tests
-
-To run tests, run the following command
-
-```bash
-  npm run test
-```
-- Jest for unit testing
-- MongoMemoryServer to mock MongoDB 
- - Supertest for HTTP API tests
-
-### Run tests
-```
-npm test
-```
-
-
 ## structure
 ```
 src/
@@ -45,7 +27,8 @@ src/
 │ ├── authController.ts
 │ └── categoryController.ts
 ├── middleware/
-│ └── auth.ts
+│ └── authenticateToken.ts
+│ └── errorMiddleware.ts
 ├── models/
 │ ├── Category.ts
 │ └── User.ts
@@ -53,10 +36,13 @@ src/
 │ ├── authRoutes.ts
 │ └── categoryRoutes.ts
 ├── tests/
-│ ├── auth.test.ts
-│ └── category.test.ts
+│ ├── unit/
+│ |   ├── authController.test.ts
+│ ├── integration/
+│ |    └── category.test.ts
+| └── setup.ts
 ├── utils/
-│ └── connectDB.ts
+│ └── generateToken.ts
 ├── app.ts
 └── server.ts
 ```
@@ -82,10 +68,7 @@ JWT_SECRET
 ```
 npm run dev
 ```
-5. Run tests
-```
-npm test
-```
+
 ## API Reference
 
 #### Auth
@@ -101,10 +84,10 @@ All routes below require Authorization: Bearer
 <token>
 | Method | Endpoint     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `POST`      | `/api/category` | Create new category
-| `GET`      | `/api/category` | Get all categories in tree format
-| `PUT`      | `/api/category/:id` | Get all categories in tree format
-| `DELETE`      | `/api/category/:id` | Delete & reassign subcategories
+| `POST`      | `/api/categories` | Create new category
+| `GET`      | `/api/categories` | Get all categories in tree format
+| `PUT`      | `/api/categories/:id` | Get all categories in tree format
+| `DELETE`      | `/api/categories/:id` | Delete & reassign subcategories
 
 
 
